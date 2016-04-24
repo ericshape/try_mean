@@ -6,9 +6,28 @@
     <script src="/modules/angular-1.3.10/angular.js"></script>
     <script src="/modules/angular_ui_router/angular-ui-router.js"></script>
     <script src="/javascripts/angularApp.js"></script>
+    <script src="http://d3js.org/d3.v2.js"></script>
     <style> .glyphicon-thumbs-up { cursor:pointer } </style>
 </head>
-<body ng-app="flapperNews" ng-controller="MainCtrl">
+<!--<body ng-app="flapperNews" ng-controller="MainCtrl">-->
+<body ng-app="flapperNews">
+    <div ng-controller="AppCtrl">
+
+        <h1>Github Commit Graph</h1>
+
+        <form ng-submit="getCommitData()">
+            User: <input ng-model="user"></input>
+            Repo: <input ng-model="repo"></input>
+            <input type="submit" value="Get Data">
+            Grouped <input type="checkbox" ng-model="grouped">
+        </form>
+
+        <p class="error">{{error}}</p>
+        <gh-visualization val="data" grouped="grouped"></gh-visualization>
+    </div>
+
+    <div ng-controller="MainCtrl">
+
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <ui-view></ui-view>
@@ -91,6 +110,8 @@
             <button type="submit" class="btn btn-primary">Post</button>
         </form>
     </script>
+
+    </div>
 
 </body>
 </html>

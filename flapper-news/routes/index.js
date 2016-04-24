@@ -71,14 +71,6 @@ router.post('/posts/:post/comments', function(req, res, next) {
   });
 });
 
-// upvote a comment
-router.put('/posts/:post/comments/:comment/upvote', auth, function(req, res, next) {
-  req.comment.upvote(function(err, comment){
-    if (err) { return next(err); }
-
-    res.json(comment);
-  });
-});
 
 router.get('/posts/:post', function(req, res, next) {
   req.post.populate('comments', function(err, post) {
